@@ -1,7 +1,9 @@
 # Registration Authentication
-> Um simples web app em React com um fomulário para cadastro e realizar o login.
+> Um simples web app em React com um fomulário para cadastro e realizar o login hosteado no Firebase.
 
-O objetivo desse projeto era focar em fundamentos do React, como Context API, Hooks, Router, por esse motivo eu optei por não criar os estilos com uma lib como o Styled Components e utilizei o Material UI para acelerar o processo de desenvolvimento. [Live Demo](https://wifi-share-fa39f.firebaseapp.com/).
+O objetivo desse projeto era focar em fundamentos do React, como Context API, Hooks, Router, por esse motivo eu optei por não criar os estilos com uma lib como o Styled Components e utilizei o Material UI para acelerar o processo de desenvolvimento. 
+
+[Live Demo](https://wifi-share-fa39f.firebaseapp.com/).
 
 
 ![Preview-Screens](https://github.com/arachnidiskandar/react-registration-authentication/blob/master/previw_1.png)
