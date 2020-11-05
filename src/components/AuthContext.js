@@ -8,13 +8,11 @@ export const AuthProvider = ({ children }) => {
   AuthProvider.propTypes = {
     children: PropTypes.element.isRequired,
   };
-  // const [pending, setPending] = useState(true);
   const [currentUser, setCurrentUser] = useState(false);
 
   useEffect(() => {
     fb.auth().onAuthStateChanged((user) => {
       setCurrentUser(user);
-      // setPending(false);
     });
   }, []);
 

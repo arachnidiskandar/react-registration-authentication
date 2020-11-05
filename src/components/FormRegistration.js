@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link as RouterLink } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
 import {
   TextField,
@@ -56,6 +57,7 @@ const FormRegistration = () => {
   const history = useHistory();
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
+
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = (data) => {
     setLoading(true);
@@ -102,11 +104,10 @@ const FormRegistration = () => {
             <TextField
               className={classes.textInputs}
               name="name"
+              autoComplete="name"
               label="Nome Completo"
               variant="outlined"
-              inputRef={register({
-                required: requiredField,
-              })}
+              autoFocus
               error={!!errors.name}
               helperText={errorFieldMessage('name')}
               required
@@ -115,6 +116,7 @@ const FormRegistration = () => {
               <TextField
                 className={classes.textInputs}
                 name="email"
+                autoComplete="email"
                 label="Email"
                 variant="outlined"
                 inputRef={register({
@@ -128,21 +130,26 @@ const FormRegistration = () => {
                 helperText={errorFieldMessage('email')}
                 required
               />
-              <TextField
-                className={classes.textInputs}
-                name="phone"
-                label="Telefone"
-                type="text"
-                error={!!errors.phone}
-                inputRef={register({
-                  pattern: {
-                    value: /^([0-9]{11})*$/,
-                    message: 'Telefone Inválido',
-                  },
-                })}
-                helperText={errorFieldMessage('phone')}
-                variant="outlined"
-              />
+              <InputMask mask="(99) 99999-9999">
+                {() => (
+                  <TextField
+                    className={classes.textInputs}
+                    name="phone"
+                    autoComplete="tel-national"
+                    label="Telefone"
+                    type="text"
+                    error={!!errors.phone}
+                    inputRef={register({
+                      pattern: {
+                        value: /(\(\d{2}\)\s)(\d{4,5}\-\d{4})/,
+                        message: 'Telefone Inválido',
+                      },
+                    })}
+                    helperText={errorFieldMessage('phone')}
+                    variant="outlined"
+                  />
+                )}
+              </InputMask>
             </div>
 
             <div>
@@ -150,6 +157,7 @@ const FormRegistration = () => {
                 className={classes.textInputs}
                 name="password"
                 type="password"
+                autocomplete="new-password"
                 label="Senha"
                 variant="outlined"
                 inputRef={register({

@@ -51,7 +51,11 @@ const FormLogin = () => {
     setLoading(true);
     fb.auth()
       .signInWithEmailAndPassword(data.email, data.password)
-      .then(() => history.push(`/home`))
+      .then(() => {
+        fb.auth().onAuthStateChanged((user) =>
+          user ? history.push('/home') : null,
+        );
+      })
       .catch((err) => {
         if (err.code === 'auth/user-not-found') {
           setError('email', {
@@ -63,9 +67,8 @@ const FormLogin = () => {
             type: 'manual',
             message: 'Senha incorreta',
           });
-        } else {
-          toast.error(err.message);
         }
+        toast.error(err.message);
       })
       .finally(() => setLoading(false));
   };
@@ -85,6 +88,8 @@ const FormLogin = () => {
             <TextField
               className={classes.textInputs}
               name="email"
+              autoComplete="email"
+              autoFocus
               inputRef={register({
                 required: { value: true, message: 'Email inválido' },
                 pattern: {
@@ -100,6 +105,7 @@ const FormLogin = () => {
             <TextField
               className={classes.textInputs}
               name="password"
+              autoComplete="current-password"
               inputRef={register({
                 required: { value: true, message: 'Senha Inválida' },
               })}
