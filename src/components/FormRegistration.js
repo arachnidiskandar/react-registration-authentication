@@ -157,7 +157,7 @@ const FormRegistration = () => {
                 className={classes.textInputs}
                 name="password"
                 type="password"
-                autocomplete="new-password"
+                autoComplete="new-password"
                 label="Senha"
                 variant="outlined"
                 inputRef={register({
